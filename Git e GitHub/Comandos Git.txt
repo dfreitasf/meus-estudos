@@ -24,12 +24,13 @@ git commit	git commit -m "commit inicial"	Criar o Commit - Retorna com 7 primeir
 git status					Verifica se há arquivos a serem "comitados" neste repositório.
 git remote add origin https://github.com/dfreitasf/livro-receitas.git	Seta este repositório no repositório remoto GitHub. Origin recebe o link e a partir deste momento o comando origin se torna igual ao link.
 git remote -v					Lista os repositórios cadastrados remotamente.
-git push origin master				Empurra o repositório para o GitHub na branch master.
+git push origin master	git push origin main	Empurra o repositório para o GitHub na branch master / main.	
 git push -u origin maingit
 git config --global credential.helper manager-core	Quando tem algum erro com as credenciais para acesso ao GitHub.
 git pull origin master				Puxa o arquivo do GitHub para minha máquina.
 git clone https://github.com/python/cpython.git	Clona o repositório que está disponível no GitHub para minha máquina.
-git checkout -b alteracao-de-cor		Cria e troca de branch para a branch alteracao-de-cor. Uma sub-árvore que fica abaixo da root master.
+git branch new_branch			Cria um novo branch
+git checkout -b new_branch		Troca para o novo branch new_branch. Uma sub-árvore que fica abaixo da root master.
 
 Configurações iniciais:
 git config --global user.email "dfreitas@outlook.com"	Para configuração do Author de maneira global e não apenas neste repositório.
