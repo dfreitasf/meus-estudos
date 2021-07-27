@@ -1,0 +1,29 @@
+Windows			Unix (Linux / Mac)	O que faz?
+cd			cd			Change Directory - Vai para o caminho especificado.
+cd /			cd /			Vai para a pasta C:\
+cd Windows		cd etc			Entra na pasta Windows / ETC (Linux)
+cd workspace		cd workspace/		Abre a pasta workspace
+cd ..			cd ..			Retrocede um nível de pastas (Nível acima).
+cls			clear (Ctrl+L)		Clear Screen
+dir			ls			Lista as pastas naquele local.
+			ls -a			Lista as pastas (repositórios), inclusive as pastas ocultas
+mkdir			mkdir			Make Directory - Cria uma pasta
+del						Deleta um arquivo. Se tentar remover uma pasta ele apaga todos os arquivos dentro da pasta.
+rmdir /s /q		rm -rf			Remove Directory (Flags: /s /q e Linux: -rf: Recursive (Deleta todas as subpastas dentro desta pasta) e Force (Para não solicitar confirmação))
+			sudo			Executa o comando seguinte com privilégios de administrador.
+			sudo su			Loga como Admin para obter privilégios de administrador. Super-usuário.
+			exit (Ctrl+D)		Desloga da conta raiz (root) do superusuário.
+			apt-get install git	Busca no servidor o arquivo instalável e instala algum aplicativo (Git, neste exemplo) na máquina.
+			git --status		Verifica se a instalação do software (Git, neste exemplo) foi concluída corretamente.
+			git --version		Verifica a versão do software instalado (Git, neste exemplo)
+echo			echo			Printa na tela o que você digitar em seguida.
+echo hello > hello.txt	echo hello > hello.txt	> é um redirecionador de fluxo. Este exemplo cria um arquivo de texto com o nome hello e com o conteúdo hello dentro deste arquivo.
+			echo > README.md	Cria um arquivo com nome README, formato .md (MarkDown) dentro do repositório (pasta) atual, sem qualquer conteúdo.
+			mv			Move. Para mover arquivos ou pastas para novos destinos.
+			mv strogonoff.md ./receitas/	Ex.: Move o arquivo strogonoff.md para a pasta no mesmo nível (./) receitas/. Caso a pasta estivesse em um nível superior deveria ser digitado ../ 
+java
+javac
+
+Atalhos:
+Tab						Autocompleta o nome da pasta ou arquivo.
+Seta para cima					Navega pelos últimos comandos digitados no terminal.

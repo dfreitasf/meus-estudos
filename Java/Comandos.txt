@@ -1,0 +1,239 @@
+https://loiane.training/curso/java-basico
+github.com/loiane/curso-java-basico
+
+package
+class
+method: 
+	public static, private, protected, etc. - Modificadores de Acesso do Método
+	void - Tipo de Retorno do Método (Retorno vazio = void; Tipos Primitivos = Inteiro (byte (8bits), short (16bits), int(32bits), long(64bits), char - caracter), Ponto Flutuante ou Fracionários (float (32bits), double (64bits)), boolean (V = 1, true ou F = 0, false); Tipo Literais (Hexadecimais, Octais, Binários); Tipo Não Primitivo - Classe = String (conjunto de caracteres), Enum)
+	main - Nome do Método
+	(String[] args) - Parâmetros/Argumentos do Método
+	{} Blocos - Sempre estão entre chaves
+
+Tabelas ASCII:
+https://pt.wikipedia.org/wiki/ASCII
+http://www.asciitable.com/
+
+Unicode:
+https://en.wikipedia.org/wiki/List_of_Unicode_characters
+
+Nosso código:
+//Comentario - Duas barras permitem digitar um comentario de seu codigo ou anular a linha de comando deixando-a in hold
+System.out.println("Hello World!"); - Texto + \n\r (nova linha e retorno do carro ao final do print)
+System.out.print("Hello World!"); - Texto
+System.out.println("Voce digitou " + args[0]);
+int cont; - Declarando a variável inteira cont
+int cont = 0; - Declarando a variável inteira cont recebendo o valor 0
+
+abstract
+assert
+boolean
+break
+byte
+case
+catch
+char
+class
+const
+continue
+default
+do
+double
+else
+enum
+extends
+final
+finally
+float
+for
+goto
+if
+implements
+import
+instanceof
+int
+interface
+long
+native
+new
+package
+private
+protected
+public
+return
+short
+static
+strictfp
+super
+switch
+synchronized
+this
+throw
+throws
+transient
+try
+void
+volatile
+while
+
+Sequência de Escape
+*	\t	tab
+	\b	backspace
+*	\n	nova linha
+*	\r	retorno de carro (similar à datilografia)
+	\f	avanço de página
+*	\'	aspas simples
+*	\"	aspas duplas
+*	\\	barra invertida
+	\ddd	constante octal
+	\uxxxx	constante hexadecimal
+// = cometários em uma linha
+/* até */ = comentários em linhas diversas
+
+import java.util.Scanner; //antes da classe main
+Scanner scan = new Scanner(System.in); //dentro da classe main
+String nome = scan.nextLine(); //ler linha inteira até teclar enter
+String primeiroNome = scan.next(); //lê e retorna uma string até encontrar o primeiro espaço
+int idade = scan.nextInt(); //lê e retorna uma variável inteira
+double altura = scan.nextDouble(); //lê e retorna uma variável double
+//scan.nextByte(); scan.nextFloat(); scan.nextShort(); scan.nextBoolean();
+
+import java.text.DecimalFormat;
+DecimalFormat df = new DecimalFormat("###,###,##0.00");
+System.out.print(df.format(vetorB[i]));
+
+Math.PI, Math.pow, Math.sqrt, etc. //não é necessário importar
+vetorB[i] = Math.sqrt(vetorA[i]);
+
+Condicionais:
+if (condicaoBoolean) {
+	entao;
+} else {
+	entao;
+}
+
+if (condicao) {
+	entao;
+} else if (condicao) {
+	entao;
+} else if (condicao) {
+	entao;
+}
+
+switch(diaSemana) {
+	case 1: System.out.println("Domingo"); break; // caso não coloque break o código é printado todas as linhas seguintes ao retorno encontrado
+	case 2: System.out.println("Segunda"); break;
+	case 3: System.out.println("Terça"); break;
+	case 4: System.out.println("Quarta"); break;
+	case 5: System.out.println("Quinta"); break;
+	case 6: System.out.println("Sexta"); break;
+	case 7: System.out.println("Sábado"); break;
+	default: System.out.print("Não é um dia da "); // esta condicional é acionada caso nenhum dos retornos acima seja encontrado
+}
+		
+switch(diaSemana) {
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6: System.out.println("Dia útil"); break;
+	case 1: 
+	case 7: System.out.println("Fim de semana"); break;
+	default: System.out.println("semana válido");
+}
+
+Loop Controle While || Do-While || For
+while (condicao) {
+	//bloco de código
+}
+
+do {
+	//bloco de código
+} while (condicao);
+
+for (inicialização; condição; atualização) {
+	//bloco de código
+}
+
+for( ; ; ); //loop infinito (trava o computador)
+
+Operadores Aritméticos (+ soma, - subtração, * multiplicação, / divisão, % módulo ou resto da divisão, ++ incremento(pós ou pré fix), -- decremento (pós ou pré fix))
+Operadores Relacionais (== igual a, != diferente de, > maior que, < menor que, >= maior ou igual que, <= menor ou igual que)
+Operadores Lógicos (& AND, | OR, ^ XOR, || OR curto circuito, && AND curto circuito, ! NOT)
+Operadores de Assignment
+Precedência - Seqüência de execução (postfix: expr++ expr--, unário: ++expr --expr +expr -expr ~ !, multiplicativo: * / %, aditivo: + -, shift: << >> >>>, relacional: < > <= >= instanceof, igualdade: '=='!=, bitwise AND: &, bitwise exclusivo OR: ^, bitwise inclusivo OR: |, lógico AND: &&, lógico OR: ||, ternário: ?:, assignment: = += -= *= /= %= &= ^= != |= <<= >>=) 
+
+Atalhos:
+Ctrl + S: Salvar
+Ctrl + D: Apaga a linha selecionada
+
+//break e continue
+//continue desconsidera todas as linhas seguintes ao comando continue e reinicia o loop a partir do próximo incremento
+//break interrompe e sai do loop
+for (int i=num; i<=max; i++) {
+	if (i % 7 == 0) {
+		System.out.println("O valor de i é: " + i);
+		break;
+	}
+}
+//break com rótulo, interrompe o rótulo indicado (trecho do código dentro do loop)
+for (int i=num; i<=max; i++) {
+	if (i % 7 == 0) {
+		continue;
+	}
+	System.out.println("O valor de i é: " + i); //Só entra nessa linha caso não seja múltiplo de 7.
+}
+for (int i=0; i<=4; i++) {
+	rotulo1: {
+		rotulo2: {
+			rotulo3: {
+				if (i == 1) {
+					break rotulo1;
+				}
+				if (i == 2) {
+					break rotulo2;
+				}
+				if (i == 3) {
+					break rotulo3;
+				}
+				System.out.println("rotulo3");
+			}
+			System.out.println("rotulo2");
+		}
+		System.out.println("rotulo1");
+	}
+	System.out.println(i);				
+}
+
+
+//Vetores:
+int[] vetorA = new int[10];		//Esta sintaxe é mais utilizada e recomendada
+int vetorB[] = new int[vetorA.length];	//Esta sintaxe tem a mesma função, porém é menos utilizada e recomendada
+for (int i = 0; i < vetorA.length; i++) {
+	System.out.print("Entre com o valor do vetor A na posição " + i + ": ");
+	vetorA[i] = scan.nextInt();
+	vetorB[i] = vetorA[i] * 2;
+}
+
+//insere a posição 0 do vetor na variável temp e faz o incremento de posições dentro do array automaticamente 
+for (double temp : temperaturas) { 
+	System.out.println(temp);	//Printa na tela temperatura[0]\ntemperatura[1]\n...temperatura[n]\n
+}
+
+Para alterar o nome de todas as variáveis dentro do código: Selecione a variável a ser alterada, clique em Refactor -> Rename -> Digite o novo nome -> Ok
+	//Também pode acessar o refactor clicando com o botão direito sobre a variável a ser alterada.
+	//Também existe o atalho Alt+Shift+R
+
+//Math.round() e Math.random()
+for (int i = 0; i < vetorA.length; i++) {
+	vetorA[i] = (int) Math.round(Math.random()); //Math.random() retorna um double entre 0 e 1. Math.round() arredonda e retorna um long.
+
+//O comando abaixo é semelhante a um if-else com um único retorno. Ternário.
+vetorB[i] = (vetorA[i] % 2 == 0) ? 1 : 0;
+	/*
+	if (vetorA[i] % 2 == 0) {
+		vetorB[i] = 1;
+	} else {
+		vetorB[i] = 0;
+	}
+	*/

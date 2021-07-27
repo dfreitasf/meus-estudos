@@ -1,0 +1,11 @@
+Principais Estruturas de Dados:
+
+Vetores (Armazenamento unidimensional de um único tipo)
+Matrizes (Armazenamento bidimensional de um único tipo)
+Registro (Armazenamento de vários tipos - Uso do operador . ponto Ex.: livro.nome)
+Lista
+Pilha
+Fila
+Árvore		Folhas, Nós ou Vértices, Raiz e Sub-árvores (Estruturas Hierárquicas)
+Tabela Hash	Chave (É um campo numérico aleatório dentro daquele registro. Ex.: 580625685) e Valor Hash da Chave (Ex.: Posição do Vetor, por exemplo: 1, 2, 3,...,99, etc.) - Tabelas de Dispersão ou Tabela Hash (Hash Table)
+Grafos		Vértices ou Nós e Arestas (Ligações)

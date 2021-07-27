@@ -1,0 +1,47 @@
+SHA1	Secure Hash Algorithm (Algoritmo de Hash Seguro) - Uma forma curta de representar um arquivo / um estado de um arquivo.
+
+Tipos de objeto (fundamentais):
+BLOBS
+TREES
+COMMITS
+
+echo "ola mundo" | openssl sha1				Este comando lança a String (que pode ficar entre aspas " " ou apóstrofos simples ' ') ola mundo para dentro de um algoritmo de encriptação, se der enter o Git retorna a linha abaixo:
+(stdin)= d9802fa01c4c1dfc4ddaf61f766d8d56ad8a8699	40 dígitos
+
+echo 'conteudo' | git hash-object --stdin		hash-object é uma função e --stdin é uma flag, pois a função hash-object espera receber um arquivo sendo que o echo envia um texto. Com este comando o git retorna o SHA1 (a chave) para o texto digitado 'conteudo':
+> fc31e91b26cf85a55e072476de7f263c89260eb1
+
+echo -e 'conteudo' | openssl sha1
+(stdin)= 65b0d0dda479cc03cce59528e28961e498155f5c
+
+echo -e 'blob 9\0conteudo' | openssl sha1		blob tamanho 9 \0 e depois a String
+> fc31e91b26cf85a55e072476de7f263c89260eb1
+
+git --version					Para verificar a versão desta instalação.
+git init					Para poder iniciar o repositório do Git (Precisa estar dentro desta pasta no terminal e digitar este comando)
+git add		git add *	git add .	Para poder mover arquivos e começar de fato dar início ao versionamento e conhecer os primeiros comandos. Passa o arquivo para o estágio "Staged". O asterisco (*) pega tudo que foi modificado dentro da Working Stage (Repositório Iniciado - Git Init) e adiciona para Staged.
+git commit	git commit -m "commit inicial"	Criar o Commit - Retorna com 7 primeiros caracteres do SHA1 do Commit Ex.: 634d92c e a mensagem String que fica entre aspas trata-se do texto com a descrição do que foi alterado nesta revisão (versão / versionamento)
+git status					Verifica se há arquivos a serem "comitados" neste repositório.
+git remote add origin https://github.com/dfreitasf/livro-receitas.git	Seta este repositório no repositório remoto GitHub. Origin recebe o link e a partir deste momento o comando origin se torna igual ao link.
+git remote -v					Lista os repositórios cadastrados remotamente.
+git push origin master				Empurra o repositório para o GitHub na branch master.
+git push -u origin maingit
+git config --global credential.helper manager-core	Quando tem algum erro com as credenciais para acesso ao GitHub.
+git pull origin master				Puxa o arquivo do GitHub para minha máquina.
+git clone https://github.com/python/cpython.git	Clona o repositório que está disponível no GitHub para minha máquina.
+git checkout -b alteracao-de-cor		Cria e troca de branch para a branch alteracao-de-cor. Uma sub-árvore que fica abaixo da root master.
+
+Configurações iniciais:
+git config --global user.email "dfreitas@outlook.com"	Para configuração do Author de maneira global e não apenas neste repositório.
+git config --global user.name dfreitasf
+git config --list					Mostra as configurações atuais.
+git config --global --unset user.name			Apaga as configurações do user.name
+git config --global --unset user.e-mail			Apaga as configurações do user.e-mail
+
+Tracked		(Unmodified -> Modified (Quando altera um arquivo que estava no estágio Staged) -> Staged (Após executar a função add))
+Untracked
+
+Criando um GitHub de respeito:
+https://web.digitalinnovation.one/articles/criando-um-perfil-de-respeito-no-github?back=%2Farticles&open-modal=true&page=1&order=oldest
+https://web.digitalinnovation.one/articles/gerar-um-readme-profissional-no-github?back=%2Farticles&page=1&order=oldest
+https://giuliana-bezerra.medium.com/criando-um-arquivo-readme-para-o-seu-projeto-afd66ce1af40

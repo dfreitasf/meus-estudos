@@ -1,0 +1,259 @@
+Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+
+O SQL server não é case sensitive
+Comentários utiliza-se -- dois hífens
+
+varchar		alfanuméricos. Sempre deverá indicar o tamanho. O limite é 4000. Armazena apenas as informações inseridas. Sempre inserir os valores entre apóstrofos ou aspas simples.
+char		alfanuméricos. Armazena todos os espaços do tamanho do vetor. Sempre inserir os valores entre apóstrofos ou aspas simples.
+bit		0 e 1
+int		inteiros
+bigint		inteiros maiores (Ex.: CPF)
+datetime	data e hora
+
+1> select getdate()		Retorna data e hora.
+2> go
+
+1> use master			Acessar o principal BD do servidor 'master'
+2> go
+
+1> select * from sys.tables	Acessar as tabelas do BD 'master'
+2> go
+
+create database Ecommerce	Cria BD com nome Ecommerce (Pode clicar com o botão direito do mouse sobre a pasta Banco de Dados -> Novo Banco de Dados -> Digite o nome do Banco de Dados -> Ok
+				Para excluir é com o botão direito sobre o Banco de Dados a ser excluído -> Excluir -> Marcar a caixa Fechar conexões existentes -> Ok
+
+Selecionar Ecommerce na lista que fica sobre o Pesquisador de Objetos. Também pode ser feito através da linha de comando "use Ecommerce" -> Executar (F5)
+
+create table Teste		Cria as colunas da Tabela
+(
+	Descricao varchar(50) null,		Cria a coluna com nome Descricao, do tipo varchar, com 50 posições que aceitam campos nulos (nulo representa ausência de valores)
+	Complemento char(10) not null		Cria a coluna com nome Complemento, do tipo char, com 10 posições que NÃO aceitam campos nulos
+)
+
+//Forma alternativa de criar tabelas abaixo:
+Clique com o botão direito sobre Tabelas -> Novo -> Tabela... Inserir as informações "Nome da Coluna", "Tipo de Dados" e se este campo poderá receber nulos ou não, marcando ou desmarcando a caixa da coluna "Permitir Nulos". Ao término clique em Salvar, digite o nome da Tabela, clique em OK. Para verificação do código, clique com o botão direito sobre a tabela criada, clique em "Script de Tabela como" -> CREATE Para -> "Janela do Editor de Nova Consulta"
+
+insert Teste values('a','a')	Armazena a letra a na coluna Descricao e na coluna Complemento.
+select * from Teste		Mostra a tabela Teste. * é a coluna que será apresentada, sendo o * para que apresente todas. Separe as colunas a serem apresentadas por vírgulas. Se deixar selecionado o nome da tabela "Teste" e digitar Alt+F1, você conseguirá visualizar mais informações.
+select * from clientes where TipoPessoa = 'j'	Mostra apenas os clientes com a coluna TipoPessoa 'j'
+
+drop table Teste		Deleta a tabela Teste
+
+//Os comandos abaixo executam a mesma instrução:
+insert into clientes (codigo, nome, TipoPessoa) values (1, 'Thiago', 'f');
+insert clientes (codigo, nome, TipoPessoa) values (1, 'Thiago', 'f');	//Caso quisesse inverter a ordem de inserção dos valores das colunas bastaria inverter o nome da coluna e também os valores inseridos. Ex.: insert clientes (TipoPessoa, codigo, nome) values ('f', 1, 'Thiago');
+insert clientes values (1, 'Thiago', 'f');	//neste caso o programa irá entender que você está inserindo os valores em todas as colunas da tabela na ordem correta. Caso queira inserir mais de um cliente na mesma linha de código basta fazer a separação por vírgulas. Ex.: insert clientes values (1, 'Thiago', 'f'), (2, 'Diego', 'f');
+
+//Os comandos abaixo também executam a mesma função:
+//Basicamente eles buscam algumas informações da tabela PedidoItem (CodigoPedido e CodigoProduto), insere na tabela PedidoItemLog os parâmetros CodigoStatusPedidoItem com o valor 1 e pega a data atual e insere no campo DataMovimento.
+insert PedidoItemLog()
+select CodigoPedido, CodigoProduto, 1, getdate()
+from PedidoItem
+
+insert PedidoItemLog(CodigoPedido, CodigoProduto, CodigoStatusPedidoItem, DataMovimento)
+select CodigoPedido, CodigoProduto, 1, getdate()
+from PedidoItem
+
+insert into clientes (codigo, nome, TipoPessoa) values (1, "Thiago", "f");
+insert clientes (codigo, nome, TipoPessoa) values (2, "Thiago", "f");
+insert clientes (TipoPessoa, codigo, nome) values ("f", 3, "Thiago");
+insert clientes values (4, "Thiago", "f");
+insert clientes values (5, "Thiago", "f"), (1, "Thiago", "j");
+
+//Para atualizar valores da tabela
+update clientes
+set 	Codigo = 7,
+	Nome = 'Jose'
+where TipoPessoa = 'j'
+
+update clientes set Codigo =7, Nome = 'Jose' where TipoPessoa = 'j'
+
+//Para deletar todos os valores da tabela clientes:
+delete
+from clientes
+
+//Para deletar valores específicos da tabela clientes:
+delete
+from clientes
+where Codigo in(5,4,3,2)	//"in" representar valores de entrada
+
+//Para condicionais where
+select* from clientes where codigo = 1 and tipopessoa = 'j'
+
+insert Pedido values (1, getdate(), 0, 3, 7) //getdate é uma função interna do SQL Server que retorna com a data e hora atuais.
+
+Para alterar uma tabela existente, adicionando colunas por exemplo. Clique com o botão direito sobre a tabela a ser editada, clique em Design.
+	Dentro do Design, para Tipo de Dados inteiros utilizados como chaves primárias, vá em Propriedades da Coluna (aba abaixo) -> Especificação de Identidade -> Sim -> Salvar, para fazer incremendos de 1 em 1 para cada novo registro
+	Ferramentas ► Opções ► Designer ► Designers de tabela e banco de dados ► Desmarque a caixa "Evitar salvar alterações que exijam a recriação da tabela".
+select isnull(DataCriacao, getdate()), * from clientes	//Função isnull verifica a coluna indicada e caso algum valor seja nulo ela retorna com o que for solicitado, neste caso retorna com a data e hora atuais.
+
+--Abaixo segue um exemplo de estrutura utilizando Switch-case
+select *,
+	case
+		when TipoPessoa = 'j' then 'Jurídica'
+		when TipoPessoa = 'f' then 'Física'
+		else 'Pessoa Indefinida'
+	end + ' ' + convert(varchar, getdate(), 103)	//concatena espaço e data após Jurídica ou Física
+from clientes
+
+--Abaixo segue um exemplo de alteração do tipo de entrada de alguma coluna, no caso alterando a coluna DataSolicitacao de datetime para varchar. Verifique a tabela de tipos de retorno para indicar o código (https://docs.microsoft.com/pt-br/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver15):
+select *, convert(varchar, DataSolicitacao, 103)
+from Pedido
+
+Obs.:
+	Chave primária é uma forma de identificar um registro, chave única por registro, gera melhor performance na busca, indexando os registros, retornando a query de forma mais rápida
+	Chave estrangeira faz a relação de uma tabela com outra tabela
+
+alter table Clientes add constraint pk_cliente primary key (Codigo)	--adicionar nova regra à tabela Clientes, com o nome da regra de pk_cliente do tipo 'primary key' na coluna 'Codigo'. Obs: Pode ser mais de uma coluna como chave primária.
+	--Uma maneira alternativa para se escolher chaves primárias é indo no Design da Tabela, selecionar as Colunas que serão consideradas como chaves primárias e clicar no ícone 'Definir Chave Primária'
+alter table PedidoItem add constraint fk_pedido foreign key (CodigoPedido) references Pedido (Codigo)	--adicionar nova regra à tabela PedidoItem, com o nome da regra de fk_pedido do tipo 'foreign key' na coluna 'CodigoPedido' que recebe a informação da tabela 'Pedido' na coluna 'Codigo'. Obs: Para cada foreign key sempre deverá haver uma primary key associada, do mesmo tipo e tamanho.
+	--Uma maneira alternativa para se escolher chaves estrangeiras é indo no Design da Tabela, selecionar a Coluna que será relacionada a uma tabela externa, clique no ícone em 'Relacionamentos', ao lado do ícone 'Definir Chave Primária', cliquem em Adicionar -> Clique em Especificação de Tabelas e Colunas na caixa '...' à direita -> Edite o Nome da relação -> Indique a tabela de onde será importado o valor -> Selecione a Coluna da tabela estrangeira que irá enviar o valor -> indique a Coluna da tabela atual que irá receber o valor -> Clique OK -> Fechar -> Salvar 
+
+alter table Pedido add CodigoStatus int		--adiciona coluna CodigoStatus do tipo int na tabela Pedido
+alter table Pedido add DescStatus varchar(50)	--adiciona coluna DescStatus do tipo varchar(50) na tabela Pedido
+
+Editar tabela Status (Entrada de Novos Dados):
+Clique com o botão direito sobre a tabela Status -> Editar 200 Linhas Superiores
+
+inner join
+left join
+right join
+
+//O comando abaixo mostra as tabelas Clientes e Pedidos, apresentando as linhas onde há interseção entre as tabelas, ou seja, mostra todos os clientes que já possuem pedidos cadastrados.
+select *
+from Clientes cli	//atribuindo o apelido cli para a tabela Clientes, para facilitar a escrita dentro da estrutura deste query
+inner join Pedido ped	//atribuindo o apelido ped para a tabela Pedido
+on cli.Codigo = ped.CodigoCliente
+
+//O comando abaixo mostra as tabelas Clientes e Pedidos, mostrando a tabela da esquerda (Clientes) completa e apenas as informações da direita (Pedido) que forem possíveis, preenchendo com nulo os demais parâmetros.
+select *
+from Clientes cli
+left join Pedido ped
+on cli.Codigo = ped.CodigoCliente
+
+//O comando abaixo mostra as tabelas Pedido e Clientes, mostrando a tabela da direita (Clientes) completa e apenas as informações da esquerda (Pedido) que forem possíveis, preenchendo com nulo os demais parâmetros.
+select *
+from Pedido ped
+right join Clientes cli
+on cli.Codigo = ped.CodigoCliente
+
+//O comando abaixo com uso de where filtra a seleção, mostrando apenas 1 valor.
+select *
+from Clientes cli
+left join Pedido ped
+on cli.Codigo = ped.CodigoCliente
+where ped.TotalPedido > 10
+
+//O comando abaixo com uso do condicional "e" cria uma nova condição para o operador left join.
+select *
+from Clientes cli
+left join Pedido ped
+on cli.Codigo = ped.CodigoCliente
+and ped.TotalPedido > 10
+
+//O comando abaixo mostra as colunas Nome da tabela clientes, TotalPedido da tabela Pedido, cria uma coluna indicando se é pessoa física ou jurídica e apelida o nome desta coluna de "Tipo Pessoa" (Instrução após o end). Mostra todos os clientes e retorna null nos campos da tabela Pedido onde há clientes que ainda não fizeram nenhum Pedido.
+select	cli.Nome,
+	ped.TotalPedido,
+		case
+			when cli.TipoPessoa = 'F' then 'Física'
+			else 'Jurídica'
+		end TipoPessoa
+from Clientes cli
+left join Pedido ped
+on cli.Codigo = ped.CodigoCliente
+
+//O comando abaixo apresenta uma busca mais refinada, com várias concatenações:
+//BETWEEN
+select	*
+from	PedidoItem t1
+inner join	PedidoItemLog t2
+on	t1.CodigoPedido = t2.CodigoPedido
+and	t1.CodigoProduto = t2.CodigoProduto
+inner join	StatusPedidoItem t3
+on	t3.Codigo = t2.CodigoStatusPedidoItem
+where Preco between 1 and 2
+
+//O comando abaixo faz o somatório dos preços x quantidade de todas as linhas filtradas:
+select	sum (Preco * Quantidade)
+from	PedidoItem t1
+inner join	PedidoItemLog t2
+on	t1.CodigoPedido = t2.CodigoPedido
+and	t1.CodigoProduto = t2.CodigoProduto
+inner join	StatusPedidoItem t3
+on	t3.Codigo = t2.CodigoStatusPedidoItem
+where Preco between 1 and 2
+
+//O comando abaixo faz a média do somatório dos preços unitários de todas as linhas filtradas:
+select	avg (Preco)
+from	PedidoItem t1
+inner join	PedidoItemLog t2
+on	t1.CodigoPedido = t2.CodigoPedido
+and	t1.CodigoProduto = t2.CodigoProduto
+inner join	StatusPedidoItem t3
+on	t3.Codigo = t2.CodigoStatusPedidoItem
+
+//O comando count conta a quantidade de linhas filtradas:
+select	count(*)
+from	PedidoItem t1
+inner join	PedidoItemLog t2
+on	t1.CodigoPedido = t2.CodigoPedido
+and	t1.CodigoProduto = t2.CodigoProduto
+inner join	StatusPedidoItem t3
+on	t3.Codigo = t2.CodigoStatusPedidoItem
+
+//GROUP BY - Agrupa Códigos Iguais para Mesclar Itens
+//ORDER BY - Ordena a saída pela coluna indicada, no caso a seguir pela primeira coluna. O desc é para ordenar de forma descrescente. Caso seja em ordem crescente não precisa mencionar o desc
+select	t4.Codigo,
+	t4.Descricao,
+	sum(t1.Preco * t1.Quantidade) Somatoria	--Atribuindo o apelido 'Somatoria' para a nova coluna com as somatórias.
+from	PedidoItem t1
+inner join	PedidoItemLog t2
+on	t1.CodigoPedido = t2.CodigoPedido
+and	t1.CodigoProduto = t2.CodigoProduto
+inner join	StatusPedidoItem t3
+on	t3.Codigo = t2.CodigoStatusPedidoItem
+inner join	Produtos t4
+on	t4.Codigo = t2.CodigoProduto
+
+group by	t4.Codigo,
+		t4.Descricao
+
+order by	Somatoria	desc
+
+//HAVING - É como se fosse WHERE, fica sempre após o GROUP, é um filtro de valores
+select	t4.Codigo,
+	t4.Descricao,
+	sum(t1.Preco * t1.Quantidade) Somatoria
+from	PedidoItem t1
+inner join	PedidoItemLog t2
+on	t1.CodigoPedido = t2.CodigoPedido
+and	t1.CodigoProduto = t2.CodigoProduto
+inner join	StatusPedidoItem t3
+on	t3.Codigo = t2.CodigoStatusPedidoItem
+inner join	Produtos t4
+on	t4.Codigo = t2.CodigoProduto
+group by	t4.Codigo,
+		t4.Descricao
+having sum(t1.Preco * t1.Quantidade) > 10
+
+//BETWEEN, NOT BETWEEN, IN, NOT IN (Retorna valores que não estão na lista indicada)
+select	*
+from	Clientes cli
+where cli.Codigo not in(1,2,7)
+
+//IS NULL, IS NOT NULL - Apresenta Tabela Clientes, concatena tabela Pedido onde há valores nulos ou onde não há valores nulos
+select *
+from Clientes cli
+left join Pedido ped
+on cli.Codigo = ped.CodigoCliente
+where ped.Codigo is null
+
+//A função abaixa conta quantos Pedidos tem cada cliente:
+select		cli.Codigo,
+		cli.Nome,
+		count(ped.Codigo)
+from		Clientes cli
+left join	Pedido ped
+on		cli.Codigo = ped.CodigoCliente
+group by	cli.Codigo,
+		cli.Nome

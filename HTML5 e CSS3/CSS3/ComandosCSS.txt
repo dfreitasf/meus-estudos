@@ -1,0 +1,102 @@
+Comandos CSS
+
+Necessário fazer a abertura no respectivo HTML através de:
+<link rel="stylesheet" href="style.css">
+
+Necessário nomear no código HTML as classes e ID's, lembrando que haverá apenas uma ID em cada código HTML.
+<h1 id="title">Diego Freitas</h1>
+<h2 class="subtitle">Posts</h2>
+<h3 class="post_title">Post #1</h3>
+<article class="post">
+<p class="post_content">
+<img src="C:\Users\dell\OneDrive\Documentos\Educacional\Programação\HTML5 e CSS3\Aula04_Imagens\postagem-1.jpg" alt="Editor de texto contendo código HTML" class="post_image">
+
+#title, .subtitle, .post_title {
+    color: blue;
+    font-family: Verdana;
+    font-weight: normal; //bold
+}
+
+#title {
+    text-transform: uppercase; //coloca o texto em caixa alta
+    text-decoration: underline; //linha abaixo do texto (sublinhado)
+}
+
+.subtitle {
+    text-transform: lowercase; //coloca o texto em letras minúsculas
+    text-decoration: overline; //linha acima do texto
+}
+
+.post_title {
+    font-size: 16px;
+    font-style: italic; //normal
+    font-family: Verdana, Arial; //Caso Verdana não funcione a Arial entra como Backup.
+    text-transform: capitalize; // coloca o texto com as primeiras letras de cada palavra em maiúsculas
+    text-decoration: line-through; //linha ao centro do texto (tachado)
+}
+
+body {
+    background: #ccc; //tom de cinza
+}
+
+.post {
+    background: #fff; //branco
+	background-color: green;
+	background-color: #008800; //=green escrito em Hexadecimal
+	background-image: url("bg.png");
+	background-position: top;
+    padding: 10px 5px; //10px: superior e inferior (eixo Y) , 5px: esquerdo e direito (eixo X)
+    	padding: 15px 10px 5px 0; // superior -> direita -> inferior -> esquerda
+    	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 0;
+    border: 3px solid #000; //Espessura(3px, centímetros, milímetros,...) Estilo(Sólida, pontilhada, tracejada,...) Cor(Black, #000,...)
+	border-top: 2px dotted green; //Estiliza a borda superior
+	border-right: 4px dashed pink;
+	border-bottom: 1px solid purple;
+	border-left: 4px dotted cyan;
+	border-width: 3px; //Estiliza a espessura de todas as bordas
+	border-color: #505050;
+	border-style: solid;
+	border-top-width: 3px; //Estiliza a espessura da borda superior
+	border-top-color: blue;
+	border-top-style: solid;
+	border-radius: 10px; //Arredonda as bordas
+	border-radius: 50%; //Este percentual transforma um retângulo em um círculo
+	border-radius: 10% 20%; //10%superior-inferior / 20%esquerda-direita
+	border-radius: 10% 20% 15% 22%; //10%superior -> 20%direita -> 15%inferior -> 22%esquerda
+    margin: 10px;
+}
+
+ul {
+    list-style-type: square; //altera o símbolo para quadrado
+}
+
+ol {
+    list-style-type:upper-roman; //altera o marcador para algarismo romano maiúsculo
+}
+
+ul {
+    list-style-type: "\1F44D"; //altera o marcador de não ordenada para por um símbolo, neste caso é um emoji de um joinha (none)
+}
+
+ul {
+    list-style-image: url("rocket.png");
+}
+
+.contacts_list li a { //altera as âncoras dos itens que estão dentro da lista desordenada 
+    color:blue
+}
+
+
+Dimensão e Alinhamento:
+Width: (900px, 100%, etc.)
+Height
+
+Max-width: 900px; //vai reduzindo a página proporcionalmente caso a janela diminua de tamanho
+Max-height
+
+Margin: (auto) //organiza, centralizando o espaço à esquerda e à direita da página
+
+Text align: left, right, center, justified

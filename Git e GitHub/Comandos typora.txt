@@ -1,0 +1,18 @@
+Markdown (extensão .md)		Tamanho da caixa (Letra) - Utilizar o typora para abrir arquivos do tipo MarkDown
+# Título nível 1		- Título com maior relevância
+## Título nível 2		-
+### Título nível 3		-
+#### Título nível 4		-
+##### Título nível 5		-
+###### Título nível 6		- Títuo com menor relevância
+
+**Negrito**			A palavra escrita iniciando com duas estrelas e fechando com duas estrelas ficará em negrito.
+_italico_			A palavra escrita iniciando com underscore e fechando com underscore ficará em itálico.
+:chiken:			A palavra escrita iniciando com dois pontos e fechando com dois pontos inserindo o nome do emoticon o typora insere o emoticon sugerido
+-				Lista desordenada
+1.				Lista ordenada
+
+Para mais ajuda vá em:
+Help -> Markdown Reference
+
+https://www.markdownguide.org/basic-syntax/

@@ -1,0 +1,22 @@
+F12 no Navegador ou Botão direito -> Inspecionar - Terminal JavaScript
+
+var gaveta = "camisa";	//Entre as simples ou duplas
+const salario = 1500;
+
+Tipos: String, Number, Boolean, Null, Undefined
+typeof gaveta 	//para verificar o tipo de variável
+
+Operadores aritméticos: +, -, *, /, %
+Operadores de comparação (Relacionais): ==, !=, >, <, >=, <=
+Operadores Lógicos: &&, ||, !
+
+var cestaDeFrutas = ['kiwi', 'maçã', 'uva', 'abacaxi'];
+
+function tabuada(numero) {
+    for (var inicio = 1; inicio <= 10; inicio++) {
+        console.log(inicio * numero);
+    }
+}
+
+for (var inicio = 0; inicio < cestaDeFrutas.length; inicio++) {
+    console.log(cestaDeFrutas[inicio]); }
