@@ -20,17 +20,23 @@ echo -e 'blob 9\0conteudo' | openssl sha1		blob tamanho 9 \0 e depois a String
 git --version					Para verificar a versão desta instalação.
 git init					Para poder iniciar o repositório do Git (Precisa estar dentro desta pasta no terminal e digitar este comando)
 git add		git add *	git add .	Para poder mover arquivos e começar de fato dar início ao versionamento e conhecer os primeiros comandos. Passa o arquivo para o estágio "Staged". O asterisco (*) pega tudo que foi modificado dentro da Working Stage (Repositório Iniciado - Git Init) e adiciona para Staged.
-git commit	git commit -m "commit inicial"	Criar o Commit - Retorna com 7 primeiros caracteres do SHA1 do Commit Ex.: 634d92c e a mensagem String que fica entre aspas trata-se do texto com a descrição do que foi alterado nesta revisão (versão / versionamento)
+git commit -m "commit inicial"	git commit	Criar o Commit - Retorna com 7 primeiros caracteres do SHA1 do Commit Ex.: 634d92c e a mensagem String que fica entre aspas trata-se do texto com a descrição do que foi alterado nesta revisão (versão / versionamento)
 git status					Verifica se há arquivos a serem "comitados" neste repositório.
-git remote add origin https://github.com/dfreitasf/livro-receitas.git	Seta este repositório no repositório remoto GitHub. Origin recebe o link e a partir deste momento o comando origin se torna igual ao link.
 git remote -v					Lista os repositórios cadastrados remotamente.
-git push origin master	git push origin main	Empurra o repositório para o GitHub na branch master / main.	
-git push -u origin maingit
+git remote add origin https://github.com/dfreitasf/livro-receitas.git	Seta este repositório no repositório remoto GitHub. Origin recebe o link e a partir deste momento o comando origin se torna igual ao link.
+git remote rm origin				Remove origin para indicar novo local de repositório remoto.
+git push -u origin main / master		Empurra o primeiro push dentro do repositório remoto.
+git push origin master / main			Empurra os demais pushes para o GitHub na branch master / main.	
 git config --global credential.helper manager-core	Quando tem algum erro com as credenciais para acesso ao GitHub.
-git pull origin master				Puxa o arquivo do GitHub para minha máquina.
+git pull origin main / master				Puxa o arquivo do GitHub para minha máquina.
 git clone https://github.com/python/cpython.git	Clona o repositório que está disponível no GitHub para minha máquina.
-git branch new_branch			Cria um novo branch
-git checkout -b new_branch		Troca para o novo branch new_branch. Uma sub-árvore que fica abaixo da root master.
+git branch				Lista os branches dentro do repositório.
+git branch -v				Lista branches com informações dos últimos commits
+git branch new_branch			Cria um novo branch chamado new_branch
+git checkout new_branch			Troca para o novo branch new_branch
+git checkout -b new_branch		Cria e troca para o novo branch new_branch. Uma sub-árvore que fica abaixo da root master.
+git merge new_branch			Resolve merge entre os branches remoto e local new_branch.
+git branch -d new_branch		Apaga o branch new_branch.
 
 Configurações iniciais:
 git config --global user.email "dfreitas@outlook.com"	Para configuração do Author de maneira global e não apenas neste repositório.
